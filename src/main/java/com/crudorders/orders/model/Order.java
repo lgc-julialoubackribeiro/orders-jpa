@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -31,9 +32,11 @@ public class Order {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	@Transient
 	private User user;
 	
 	@OneToMany(mappedBy="order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Transient
 	private List<OrderProduct> products;
 	 
 	public Order() {}

@@ -27,4 +27,29 @@ public class ProductService {
 		List<Product> products = repository.findAll();
 		return products;
 	}
+	
+	public ResponseEntity<Product> getProduct(int id) {
+		return repository.findById(id).map(el -> {
+			return ResponseEntity.ok().body(el);
+		}).orElse(ResponseEntity.notFound().build());
+	}
+	
+	public ResponseEntity<Product> deleteProduct(int id) {
+		return repository.findById(id).map(el -> {
+			repository.deleteById(id);
+			return ResponseEntity.ok().body(el);
+		}).orElse(ResponseEntity.notFound().build());
+	}
+	
+	public ResponseEntity<Product> updateProduct(int id, Product product) {
+		return repository.findById(id).map(el -> {
+			el.setName(product.getName());
+			el.setUnitPrice(product.getUnitPrice());
+			el.setMeasures(product.getMeasures());
+			el.setCategory(product.getCategory());
+
+			Product updated = repository.save(el);
+			return ResponseEntity.ok().body(updated);
+		}).orElse(ResponseEntity.notFound().build());
+	}
 }
