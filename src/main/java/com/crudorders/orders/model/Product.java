@@ -66,6 +66,8 @@ public class Product {
 		this.measures = measures;
 	}
 
+	public Product() {}
+	
 	public Product(String name, int unitPrice, String category, String measures) {
 		super();
 		this.name = name;

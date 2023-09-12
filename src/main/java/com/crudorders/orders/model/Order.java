@@ -34,7 +34,7 @@ public class Order {
 	private User user;
 	
 	@OneToMany(mappedBy="order", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<OrderProduct> listOrderProduct;
+	private List<OrderProduct> products;
 	 
 	public Order() {}
 	
@@ -42,7 +42,7 @@ public class Order {
 		super();
 		this.totalPrice = totalPrice;
 		this.user = user;
-		this.listOrderProduct = new ArrayList<>();
+		this.products = new ArrayList<>();
 	}
 	
 	public int getId() {
@@ -70,11 +70,11 @@ public class Order {
 	}
 	
 	public List<OrderProduct> getListOrderProduct() {
-		return listOrderProduct;
+		return products;
 	}
 
-	public void setListOrderProduct(List<OrderProduct> listOrderProduct) {
-		this.listOrderProduct = listOrderProduct;
+	public void setListOrderProduct(List<OrderProduct> products) {
+		this.products = products;
 	}
 
 	@Override

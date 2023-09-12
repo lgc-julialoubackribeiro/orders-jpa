@@ -36,7 +36,7 @@ public class OrderController {
 	    @ApiResponse(code = 500, message = "Exceção gerada"),
 	})
 	@PostMapping(produces="application/json", consumes="application/json")
-	public ResponseEntity<Order> createUser(@RequestBody Order order) {
+	public ResponseEntity<Order> createOrder(@RequestBody Order order) {
 		return orderService.createOrder(order);
 	}
 	
@@ -57,7 +57,7 @@ public class OrderController {
 	
 	@ApiOperation(value = "Buscar pedido por Id")	
 	@ApiResponses(value = {
-	    @ApiResponse(code = 200, message = "Usuário encontrado"),
+	    @ApiResponse(code = 200, message = "Pedido encontrado"),
 	    @ApiResponse(code = 204, message = "Nenhum conteúdo encontrado"),
 	    @ApiResponse(code = 400, message = "Requisição mal formatada"),
 	    @ApiResponse(code = 404, message = "Usuário não encontrado"),
@@ -66,13 +66,13 @@ public class OrderController {
 	    @ApiResponse(code = 500, message = "Exceção gerada"),
 	})
 	@GetMapping(path = {"/{id}"}, produces="application/json")
-	public ResponseEntity<Order> getUser(@PathVariable int id) {
+	public ResponseEntity<Order> getOrder(@PathVariable int id) {
 		return orderService.getOrder(id);
 	}
 	
 	@ApiOperation(value = "Exclusão de pedido")	
 	@ApiResponses(value = {
-	    @ApiResponse(code = 200, message = "Usuário deletado"),
+	    @ApiResponse(code = 200, message = "Pedido deletado"),
 	    @ApiResponse(code = 204, message = "Nenhum conteúdo encontrado"),
 	    @ApiResponse(code = 400, message = "Requisição mal formatada"),
 	    @ApiResponse(code = 404, message = "Usuário não encontrado"),
@@ -81,7 +81,7 @@ public class OrderController {
 	    @ApiResponse(code = 500, message = "Exceção gerada"),
 	})
 	@DeleteMapping(path ={"/{id}"}, produces="application/json")
-	public ResponseEntity<Order> deleteUser(@PathVariable int id) {
+	public ResponseEntity<Order> deleteOrder(@PathVariable int id) {
 		return orderService.deleteOrder(id);
 	}
 }
