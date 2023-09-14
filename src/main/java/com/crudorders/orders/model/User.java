@@ -51,6 +51,9 @@ public class User {
 		this.email = email;
 	}
 	
+	
+	public User() {}
+	
 	public User(String name, String email) {
 		super();
 		this.name = name;

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.crudorders.orders.controller.RestConsumer;
 import com.crudorders.orders.model.Order;
 import com.crudorders.orders.repository.OrderRepository;
 
@@ -15,10 +16,15 @@ public class OrderService {
 	@Autowired
 	private OrderRepository repository;
 	
+	@Autowired
+	private RestConsumer restConsumer;
+	
 	public ResponseEntity<Order> createOrder(Order order) {
 		try {
- 			Order pedido = repository.save(order);
-			return ResponseEntity.ok().body(pedido);
+			restConsumer.getUser(order.getUser());
+			
+ 			//Order pedido = repository.save(order);
+			return ResponseEntity.ok().body(null);
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().body(new Order());
 		}
